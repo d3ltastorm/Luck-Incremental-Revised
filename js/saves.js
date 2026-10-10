@@ -86,7 +86,7 @@ function getPlayerData() {
         rp: E(0),
         rTimes: 0,
 
-        mastery_tier: 0,
+        mastery_tier: E(0),
         mastery_essence: E(0),
     }
     for (let id in UPGRADES) s.upgrade[id] = new Array(UPGRADES[id].ctn.length).fill(E(0))
