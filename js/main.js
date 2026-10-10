@@ -11,16 +11,16 @@ function loop() {
 const MAIN = {
     prestige: {
         gain() {
-            let r = player.max_rarity.sub(15)
+            let r = player.max_rarity.sub(50)
             if (r.lt(0)) return E(0)
-            let x = Decimal.pow(1.1,r).mul(r.add(1))
+            let x = Decimal.pow(1.05,r).mul(r.add(1))
 
             x = x.mul(upgradeEffect('tp',1)).mul(upgradeEffect('rp',1)).mul(upgradeEffect('es',1)[1])
 
             return x.floor()
         },
         reset() {
-            if (player.max_rarity.gte(15)) {
+            if (player.max_rarity.gte(50)) {
                 player.pp = player.pp.add(tmp.ppGain)
                 player.pTimes++
 
@@ -34,7 +34,7 @@ const MAIN = {
     },
     trans: {
         gain() {
-            let r = player.max_rarity.sub(100)
+            let r = player.max_rarity.sub(200)
             if (r.lt(0)) return E(0)
             r = r.add(1).root(2)
             let x = Decimal.pow(1.1,r).mul(r.add(1)).mul(player.pp.div(1e8).max(1).root(2))
@@ -44,7 +44,7 @@ const MAIN = {
             return x.floor()
         },
         reset() {
-            if (player.max_rarity.gte(100)) {
+            if (player.max_rarity.gte(200)) {
                 player.tp = player.tp.add(tmp.tpGain)
                 player.tTimes++
 
@@ -60,7 +60,7 @@ const MAIN = {
     },
     rein: {
         gain() {
-            let r = player.max_rarity.sub(300)
+            let r = player.max_rarity.sub(600)
             if (r.lt(0)) return E(0)
             r = r.add(1).root(2)
             let x = Decimal.pow(1.1,r).mul(r.add(1)).mul(player.tp.div(1e9).max(1).root(3))
@@ -70,7 +70,7 @@ const MAIN = {
             return x.floor()
         },
         reset() {
-            if (player.max_rarity.gte(300)) {
+            if (player.max_rarity.gte(600)) {
                 player.rp = player.rp.add(tmp.rpGain)
                 player.rTimes++
 
@@ -86,7 +86,7 @@ const MAIN = {
     },
     mastery: {
         req() {
-            let x = 750 + 600 * player.mastery_tier
+            let x = new Decimal(3500).add(new Decimal(1250).mul(player.mastery_tier.pow(1.125))).floor()
 
             return x
         },
@@ -125,7 +125,7 @@ el.update.main = ()=>{
         tmp.el.pres_btn.setClasses({locked: tmp.ppGain.lt(1), pres_btn: true})
 
         tmp.el.pres_btn.setHTML(`
-        (Require ${getRarityName(15).bold()})<br>
+        (Require ${getRarityName(50).bold()})<br>
         Prestige for ${tmp.ppGain.format(0).bold()} Prestige Points
         `)
 
@@ -133,7 +133,7 @@ el.update.main = ()=>{
         tmp.el.tran_btn.setClasses({locked: tmp.tpGain.lt(1), pres_btn: true})
 
         tmp.el.tran_btn.setHTML(`
-        (Require ${getRarityName(100).bold()})<br>
+        (Require ${getRarityName(200).bold()})<br>
         Transcend for ${tmp.tpGain.format(0).bold()} Trancension Points
         `)
 
@@ -141,7 +141,7 @@ el.update.main = ()=>{
         tmp.el.rein_btn.setClasses({locked: tmp.rpGain.lt(1), pres_btn: true})
 
         tmp.el.rein_btn.setHTML(`
-        (Require ${getRarityName(300).bold()})<br>
+        (Require ${getRarityName(600).bold()})<br>
         Reincarnate for ${tmp.rpGain.format(0).bold()} Reincarnation Points
         `)
     }
