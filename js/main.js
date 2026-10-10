@@ -11,7 +11,7 @@ function loop() {
 const MAIN = {
     prestige: {
         gain() {
-            let r = player.max_rarity.sub(50)
+            let r = player.max_rarity.sub(22)
             if (r.lt(0)) return E(0)
             let x = Decimal.pow(1.05,r).mul(r.add(1))
 
@@ -20,7 +20,7 @@ const MAIN = {
             return x.floor()
         },
         reset() {
-            if (player.max_rarity.gte(50)) {
+            if (player.max_rarity.gte(20)) {
                 player.pp = player.pp.add(tmp.ppGain)
                 player.pTimes++
 
@@ -125,7 +125,7 @@ el.update.main = ()=>{
         tmp.el.pres_btn.setClasses({locked: tmp.ppGain.lt(1), pres_btn: true})
 
         tmp.el.pres_btn.setHTML(`
-        (Require ${getRarityName(50).bold()})<br>
+        (Require ${getRarityName(22).bold()})<br>
         Prestige for ${tmp.ppGain.format(0).bold()} Prestige Points
         `)
 
