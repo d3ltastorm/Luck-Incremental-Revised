@@ -92,7 +92,7 @@ const MAIN = {
         },
         reset() {
             if (player.max_rarity.gte(tmp.mTierReq)) {
-                player.mastery_tier++
+                player.mastery_tier = player.mastery_tier.add(1)
 
                 this.doReset()
             }
