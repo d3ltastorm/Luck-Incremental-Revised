@@ -1,17 +1,12 @@
-@font-face {
-    font-family: UbuntuMono;
-    src: url(MainFont.ttf);
-}
-
 * {
-	font-family: UbuntuMono;
+	font-family: Inconsolata;
     table-align: center;
 	text-align: center;
 }
 
 body {
     color: white;
-    background-color: #333;
+    background-color: #111;
 	overflow-x: hidden;
     overflow-y: scroll;
 	font-size: 16px;
@@ -54,7 +49,7 @@ h3 {
 
 button {
     padding: 5px 10px;
-    background-color: #222;
+    background-color: #444;
     color: white;
     border: none;
     cursor: pointer;
@@ -62,12 +57,12 @@ button {
 }
 
 button.locked {
-    background-color: #181818;
+    background-color: #222;
     cursor: default;
 }
 
 button:not(.locked):hover {
-    background-color: #282828;
+    background-color: #333;
 }
 
 .table_center {
