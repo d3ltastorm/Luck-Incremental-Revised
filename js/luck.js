@@ -193,9 +193,9 @@ function roll() {
 
     tmp.el.rolled_div.setHTML(`
     You rolled:<br>
-    <h2>${getRarityName(r)} <i style="font-size: 15px; font-family: monospace typewriter">1 in ${format(getRarityChance(r),2)}</i></h2>
+    <h2>${getRarityName(r)} <i style="font-size: 15px; font-family: monospace typewriter">1 in ${format(getRarityChance(r),2)}</i></h2><br>
     (Your highest rarity is ${getRarityName(player.max_rarity)})<br>
-    ${player.max_rarity.gte(1000) ? `<span style="color: #f00">Chance has been increased due to rarity softcap.</span>` : ""}
+    ${player.max_rarity.gte(1000) ? `<span style="color: #f00">Chance has been highly increased due to rarity softcap.</span>` : ""}
     `)
 
     player.roll_time = 0
