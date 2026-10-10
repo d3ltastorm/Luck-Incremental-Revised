@@ -151,7 +151,7 @@ const RP_LENS = RARITY_PREFIX.map(x=>x.length)
 var show_luck_nav = false
 
 function rarityNameFormat(args) {
-    return !args[1] ? args[0] : `<span style="color:${args[1]}">${args[0].replaceAll("-","⁻").replaceAll("+","⁺")}</span>`
+    return !args[1] ? args[0] : `<span style="color:${args[1]}">${args[0].replaceAll("-","<sup>-</sup>").replaceAll("+","<sup>+</sup>")}</span>`
 }
 function getRarityName(i) {
     let h = ''
